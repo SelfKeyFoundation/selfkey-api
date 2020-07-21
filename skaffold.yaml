@@ -1,0 +1,25 @@
+apiVersion: skaffold/v2beta5
+kind: Config
+build:
+  artifacts:
+    - image: selfkey-api
+      context: .
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        infer:
+          - "**/*"
+deploy:
+  helm:
+    flags:
+      upgrade:
+      - --install
+    releases:
+      - name: selfkey-api-dev
+        chartPath: ./charts/selfkey-api
+        artifactOverrides:
+          image: selfkey-api
+        overrides:
+          service:
+            type: NodePort
+            port: 3000
