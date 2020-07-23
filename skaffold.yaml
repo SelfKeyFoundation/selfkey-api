@@ -26,12 +26,10 @@ profiles:
   deploy:
     kubeContext: docker-desktop
     helm:
-      flags:
-        upgrade:
-        - --install
       releases:
         - name: selfkey-api-dev
           chartPath: ./charts/selfkey-api
+          remote: false
           artifactOverrides:
             image: selfkey-api
           overrides:
