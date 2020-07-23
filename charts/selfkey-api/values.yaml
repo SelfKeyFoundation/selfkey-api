@@ -1,9 +1,7 @@
 replicaCount: 1
 
-# image: 
-#   repository: ''
-#   tag: ''
-#   imagePullPolicy: IfNotPresent
+# image: image path
+imagePullPolicy: IfNotPresent
 
 service:
   type: NodePort
@@ -18,4 +16,3 @@ command:
   - "yarn"
 args:
   - "start"
-image: selfkey-api:779f25111bb2280b9dbbe0ac229c972c0c4f9fda66fa90dd0b5c6ccc4d8ad1d5
