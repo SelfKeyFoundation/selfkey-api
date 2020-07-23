@@ -1,19 +1,20 @@
 apiVersion: skaffold/v2beta5
 kind: Config
-build:
-  tagPolicy:
-    gitCommit:
-      variant: AbbrevCommitSha
-  artifacts:
-  - image: asia.gcr.io/selfkey2/selfkey-api
-    context: .
-    docker:
-      dockerfile: Dockerfile
-      buildArgs: 
-        NODE_ENV: production
-  local:
-    push: true
 profiles:
+- name: circleci
+  build:
+    tagPolicy:
+      envTemplate:
+        template: "{{.IMAGE_NAME}}:{{.CIRCLE_BRANCH}}-{{.CIRCLE_SHA1}}"
+    artifacts:
+    - image: asia.gcr.io/selfkey2/selfkey-api
+      context: .
+      docker:
+        dockerfile: Dockerfile
+        buildArgs: 
+          NODE_ENV: production
+    local:
+      push: true
 - name: dev
   build:
     local:
