@@ -5,7 +5,6 @@ orbs:
 jobs:
   build-and-push:
     executor: docker/docker
-    context: google-container-registry
     steps:
       - setup_remote_docker
       - checkout
@@ -27,6 +26,7 @@ workflows:
   main:
     jobs:
       - build-and-push:
+          context: google-container-registry
           filters:
             branches:
               only:
