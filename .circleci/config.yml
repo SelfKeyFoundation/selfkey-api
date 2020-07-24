@@ -11,7 +11,7 @@ jobs:
       - run:
           name: login to docker repository
           command: |
-            docker login -u ${GCR_DOCKER_USERNAME} -p ${GCR_DOCKER_PASSWORD} ${GCR_DOCKER_REPOSITORY}
+            docker login -u ${GCR_DOCKER_USERNAME} -p "$(echo ${GCR_DOCKER_PASSWORD} | base64 -d)" ${GCR_DOCKER_REPOSITORY}
       - run:
           name: install skaffold
           command: |
