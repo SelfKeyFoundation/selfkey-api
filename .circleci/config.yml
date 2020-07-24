@@ -5,13 +5,14 @@ orbs:
 jobs:
   build-and-push:
     executor: docker/docker
+    context: google-container-registry
     steps:
       - setup_remote_docker
       - checkout
       - run:
           name: login to docker repository
           command: |
-            docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD} ${DOCKER_REPOSITORY}
+            docker login -u ${GCR_DOCKER_USERNAME} -p ${GCR_DOCKER_PASSWORD} ${GCR_DOCKER_REPOSITORY}
       - run:
           name: install skaffold
           command: |
