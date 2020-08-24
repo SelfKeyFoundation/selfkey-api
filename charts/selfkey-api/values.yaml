@@ -16,3 +16,13 @@ command:
   - "yarn"
 args:
   - "start"
+mongodb:
+  enabled: true
+  auth:
+    enabled: true
+    rootPassword: test
+    username: selfkey
+    database: selfkey-api
+    password: test
+  persistence:
+    size: 8Gi
